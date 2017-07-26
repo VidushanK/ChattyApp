@@ -2,24 +2,15 @@ import React, {Component} from 'react';
 import ChatBar from './ChatBar.jsx';
 import Message from './Message.jsx';
 import MessageList from './MessageList.jsx';
+import {default as UUID} from "node-uuid";
+
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
       currentUser: {name: "Bob"},
-      messages: [
-        {
-          id:0,
-          username: "Bob",
-          content: "Has anyone seen my marbles?",
-        },
-        {
-          id:1,
-          username: "Anonymous",
-          content: "No, I think you lost them. You lost your marbles Bob. You lost them for good."
-        }
-      ]
+      messages: []
     };
     console.log(this.props);
   }
@@ -29,21 +20,30 @@ class App extends Component {
     console.log('Connected to server');
     }
 
-}
+    this.connection.onmessage = (event) => {
+      console.log('On message called! ', event);
+      console.log("event data ",event.data);
+
+      const message = event.data;
+
+      var messages = [];
+      messages = this.state.messages.concat(JSON.parse(message));
+      this.setState({
+        messages: messages
+      });
+      console.log("state messages :",this.state.messages);
+    }
+
+  }
 
   addNewMessage(username, content) {
     const message = {
-      id: Date.now(),
+      id: UUID.v4(),
       username,
       content
     };
-
-    const newMessageList = this.state.messages.concat(message);
-    this.setState({
-      messages: newMessageList
-    });
     this.connection.send(JSON.stringify(message));
-  }
+}
 
 
   render() {

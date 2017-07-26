@@ -24,20 +24,12 @@ class App extends Component {
     console.log(this.props);
   }
   componentDidMount() {
-    var connection = new WebSocket('ws://localhost:3001');
-    connection.onopen = function (event) {
-    connection.send("test123")
+    this.connection = new WebSocket('ws://localhost:3001');
+    this.connection.onopen = function (event) {
     console.log('Connected to server');
-  }
+    }
 
-    console.log("componentDidMount <App />");
-    setTimeout(() => {
-      console.log("Simulating incoming message");
-      const newMessage = {id: 3, username: "Michelle", content: "Hello there!"};
-      const messages = this.state.messages.concat(newMessage)
-      this.setState({messages: messages})
-    }, 3000);
-  }
+}
 
   addNewMessage(username, content) {
     const message = {
@@ -45,11 +37,14 @@ class App extends Component {
       username,
       content
     };
+
     const newMessageList = this.state.messages.concat(message);
     this.setState({
       messages: newMessageList
     });
+    this.connection.send(JSON.stringify(message));
   }
+
 
   render() {
     console.log("Rendering <App/>")

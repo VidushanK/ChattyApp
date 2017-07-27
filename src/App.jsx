@@ -22,9 +22,13 @@ class App extends Component {
 
     this.connection.onmessage = (event) => {
       console.log('On message called! ', event);
-      console.log("event data ",event.data);
-
+      // console.log("event data ",event.data);
+      //
       const message = event.data;
+      const data = JSON.parse(event.data);
+      console.log("this is the data type",data.type)
+      console.log(data.id)
+      console.log("this is the type:", data.type);
 
       var messages = [];
       messages = this.state.messages.concat(JSON.parse(message));
@@ -36,14 +40,31 @@ class App extends Component {
 
   }
 
-  addNewMessage(username, content) {
-    const message = {
-      id: UUID.v4(),
-      username,
-      content
-    };
-    this.connection.send(JSON.stringify(message));
+  addNewMessage(username, content, type) {
+
+    let oldName = this.state.currentUser.name;
+    if (oldName !== username){
+      var check = {
+        type : 'postNotification',
+        content : `${oldName} has changed their name to ${username}`
+      }
+    this.state.currentUser.name = username
+      this.connection.send(JSON.stringify(check))
+
+
+    }
+      const message = {
+        type,
+        id: UUID.v4(),
+        username,
+        content
+      };
+      console.log("this is the type",type)
+      console.log("this is the content",content)
+      this.connection.send(JSON.stringify(message));
+
 }
+
 
 
   render() {

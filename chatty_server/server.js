@@ -23,15 +23,27 @@ wss.on('connection', (ws) => {
   ws.on('message', function incoming(data) {
     var message = JSON.parse(data)
     console.log("Name", message.username,"says", message.content);
-    broadcast(data);
+    if (message.type === 'postMessage') {
+      message.type = 'incomingMessage';
+    } else if (message.type === 'postNotification') {
+      message.type = 'incomingNotification';
+    }
+
+      broadcast(message);
   ;});
   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
   ws.on('close', () => console.log('Client disconnected'));
 });
 
-function broadcast(data) {
+function broadcast(msg) {
+  console.log(msg)
   for(let client of wss.clients) {
-    console.log('We are at ' + wss.clients.size + ' clients!');
-    client.send(data);
+
+    // console.log('We are at ' + wss.clients.size + ' clients!');
+    // console.log("this is the parsed data",JSON.parse(daVta).type);
+    // if(JSON.parse(data).type === 'postMessage'){
+    //     JSON.parse(data).type = 'incomingMessage';
+    // }
+    client.send(JSON.stringify(msg));
   }
 }

@@ -41,5 +41,6 @@ npm run lint
 
 * React
 * Webpack
+* Node-uuid
 * [babel-loader](https://github.com/babel/babel-loader)
 * [webpack-dev-server](https://github.com/webpack/webpack-dev-server)

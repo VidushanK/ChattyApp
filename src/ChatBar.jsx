@@ -8,7 +8,7 @@ class ChatBar extends Component {
       content: ''
     }
   }
-
+  // Changes the username
   onUsernameChange(event) {
     const oldName = this.state.username;
     const username = event.target.value;
@@ -16,16 +16,17 @@ class ChatBar extends Component {
       username
     })
   }
-
+  // sets the content to the chatbar content value
   onContent(event) {
     this.setState({
       content: event.target.value
     });
   }
-
+  // if the user presses the key Enter, then it will create a new message
+  // with a type of postMessage
+  // after each post, the content of the chatbar will return to default
   enterKeypressed(event) {
     if (event.key === 'Enter') {
-
       this.props.newMessage(this.state.username, this.state.content, "postMessage")
       this.setState({
         content: ''

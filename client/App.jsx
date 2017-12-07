@@ -30,10 +30,9 @@ class App extends Component {
         });
       }
       console.log(message.color)
-      let color = message.randsadsadsadasdasdsColor;
       const messages = this.state.messages.concat(message);
       this.setState({
-        messages: messages
+        messages: messages,
       });
     }
   }

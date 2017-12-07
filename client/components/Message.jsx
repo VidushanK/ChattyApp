@@ -5,7 +5,6 @@ class Message extends Component {
 
   render(){
   let userColor = { color: this.props.color }
-  console.log('testing out color', userColor);
   console.log("Rendering <Message>")
     return(
       <div className="messages">

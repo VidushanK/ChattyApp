@@ -10,7 +10,8 @@ class MessageList extends Component{
             type={ post.type }
             key={ post.id }
             username={ post.username }
-            content={ post.content } />
+            content={ post.content }
+            color={ post.userColor}/>
       });
 
       return (

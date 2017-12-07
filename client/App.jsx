@@ -10,6 +10,7 @@ class App extends Component {
     super(props);
     this.state = {
       onlineUser: 0,
+      userColor: '',
       currentUser: {name: "Bob"},
       messages: []
     };
@@ -24,9 +25,12 @@ class App extends Component {
       const message = JSON.parse(event.data);
       if(message.type === 'incomingClientSize'){
         this.setState({
-          onlineUser: message.clientSize
+          onlineUser: message.clientSize,
+          userColor: message.color
         });
       }
+      console.log(message.color)
+      let color = message.randsadsadsadasdasdsColor;
       const messages = this.state.messages.concat(message);
       this.setState({
         messages: messages
@@ -52,7 +56,8 @@ class App extends Component {
         type,
         id: UUID.v4(),
         username,
-        content
+        content,
+        userColor: this.state.userColor
       };
       this.connection.send(JSON.stringify(message));
 
@@ -66,7 +71,7 @@ class App extends Component {
           <a href="/" className="navbar-brand">Chatty</a>
           <span className="counter">{this.state.onlineUser} users online!</span>
         </nav>
-          <MessageList messages={this.state.messages} />
+          <MessageList messages={this.state.messages} userColor={this.state.userColor}/>
           <ChatBar currentUser={this.state.currentUser}  newMessage={this.addNewMessage.bind(this)}/>
       </div>
     );

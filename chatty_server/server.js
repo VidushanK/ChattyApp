@@ -14,11 +14,21 @@ const server = express()
 // Create the WebSockets server
 const wss = new SocketServer({ server });
 
+// random userColor
+function colorRandomizer() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
 // Set up a callback that will run when a client connects to the server
 // When a client connects they are assigned a socket, represented by
 // the ws parameter in the callback.
 wss.on('connection', (ws) => {
-  
+
   console.log('Client connected');
   // receives the message and broadcasts the message to every client
   // changes the types of message
@@ -32,6 +42,13 @@ wss.on('connection', (ws) => {
     }
       broadcast(message);
   ;});
+
+  // random color for each user
+  const randColor = {
+    type: 'userColor',
+    color: colorRandomizer()
+  }
+  broadcast(randColor);
 
   // broadcast the current client size to every client
   const clientCount = {

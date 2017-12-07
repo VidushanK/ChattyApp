@@ -16,7 +16,7 @@ class ChatBar extends Component {
       username
     })
   }
-  // sets the content to the chatbar content value
+  // sets the content to the chatbar content
   onContent(event) {
     this.setState({
       content: event.target.value

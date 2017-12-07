@@ -8,6 +8,7 @@ require("../styles/application.scss");
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.jsx';
+import {default as UUID} from "node-uuid";
 
 
 ReactDOM.render(<App />, document.getElementById('react-root'));

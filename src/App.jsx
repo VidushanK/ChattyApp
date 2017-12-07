@@ -22,7 +22,6 @@ class App extends Component {
     }
     this.connection.onmessage = (event) => {
       const message = JSON.parse(event.data);
-      // const data = JSON.parse(event.data);
       if(message.type === 'incomingClientSize'){
         this.setState({
           onlineUser: message.clientSize
@@ -43,12 +42,12 @@ class App extends Component {
     if (oldName !== username){
       var check = {
         type : 'postNotification',
-        content : `${oldName} has changed their name to ${username}`
+        content : `${oldName} changed their name to ${username}`
       }
     // Changes the oldName to the new Username
-    this.state.currentUser.name = username
+    oldName = username
     this.connection.send(JSON.stringify(check))
-    } else {
+  }
       const message = {
         type,
         id: UUID.v4(),
@@ -56,7 +55,7 @@ class App extends Component {
         content
       };
       this.connection.send(JSON.stringify(message));
-    }
+
   }
 
   render() {

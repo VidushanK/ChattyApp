@@ -8,6 +8,7 @@ Instant Messaging app harnassing React and WebSockets Edit
 ```
 npm install
 npm start
+npm run server
 open http://localhost:3000
 ```
 ## Dependencies:

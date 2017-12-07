@@ -1,6 +1,9 @@
 # ChattyApp
 Instant Messaging app harnassing React and WebSockets Edit
 
+## Screen Shots:
+![](https://github.com/VidushanK/ChattyApp/blob/master/chattyapp.png)
+
 ## Installation:
 ```
 npm install

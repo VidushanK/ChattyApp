@@ -1,8 +1,8 @@
 // import dependencies
 import React, {Component} from 'react';
-import ChatBar from './ChatBar.jsx';
-import Message from './Message.jsx';
-import MessageList from './MessageList.jsx';
+import ChatBar from './components/ChatBar.jsx';
+import Message from './components/Message.jsx';
+import MessageList from './components/MessageList.jsx';
 import {default as UUID} from "node-uuid";
 
 class App extends Component {

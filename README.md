@@ -1,10 +1,17 @@
 # ChattyApp
-Instant Messaging app harnassing React and WebSockets Edit
 
-## Screen Shots:
+ChattyApp is a small instant messaging application utilizing React and Websocket.
+
+A basic messaging application allowing users to join a chatroom; create a nickname; and chat with one another!
+
+## Screen Shot:
 ![](https://github.com/VidushanK/ChattyApp/blob/master/chattyapp.png)
 
 ## Installation:
+
+Installation of ChattyApp is simple and easy to setup!
+
+After npm is installed, just input these instructions:
 ```
 npm install
 npm start

@@ -2,7 +2,7 @@
 
 ChattyApp is a small instant messaging application utilizing React and Websocket.
 
-A basic messaging application allowing users to join a chatroom; create a nickname; and chat with one another!
+A messaging application that includes all basic functions of a chatroom: creating a unique username, joining chatrooms, and converse with other users.
 
 ## Screen Shot:
 ![](https://github.com/VidushanK/ChattyApp/blob/master/chattyapp.png)
